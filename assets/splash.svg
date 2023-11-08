@@ -1,0 +1,34 @@
+<svg id="Group_595" data-name="Group 595" xmlns="http://www.w3.org/2000/svg" width="414" height="896" viewBox="0 0 414 896">
+  <rect id="Rectangle_97" data-name="Rectangle 97" width="414" height="896" fill="#0369ab"/>
+</svg>
+
+
+
+<View>
+    <FlatList
+        data={products}
+        keyExtractor={(item) => item.name}
+        numColumns={3} // Number of columns in the grid
+        renderItem={({ item }) => (
+          <TouchableOpacity             
+          style={styles.gridItem}>
+                 <Text style={styles.gridTextday}>{item.price} </Text>
+          </TouchableOpacity>
+        )}
+      />
+</View>
+
+
+
+<FlatList
+style={styles.flatlist}
+  data={sampleData}
+  keyExtractor={(item) => item.name}
+  numColumns={4}
+  renderItem={({ item }) => (
+    <TouchableOpacity style={styles.gridItem}>
+      <Image source={{ uri: item.imageUrl }} style={styles.productImage} />
+      <Text style={styles.productTitle}>{item.name}</Text>
+    </TouchableOpacity>
+  )}
+/>

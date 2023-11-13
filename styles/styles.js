@@ -20,6 +20,12 @@ export const styles = StyleSheet.create({
         backgroundColor:'#FAFAFA',
        
     },
+
+    mts:{
+      flexDirection: 'column',
+      gap: 17,
+      padding: 5,
+    },
     banner:{
         width: '100%',
         marginBottom: 20,

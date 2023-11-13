@@ -9,6 +9,7 @@ const Homepage = () => {
   const navigation = useNavigation();
   const [productdata, setProductData] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
+  const [slicedData, setslicedData] = useState(false);
   const sampleData = [
 
   
@@ -191,6 +192,8 @@ const fetchdata = async () => {
   .then((response) => {
     // Handle the successful response and store the data in the state
     setProductData(response.data);
+    const numberOfItemsToDisplay = 10;
+     setslicedData(response.data.slice(0, numberOfItemsToDisplay));
     console.log('fetched')
 
   })
@@ -240,7 +243,7 @@ const fetchdata = async () => {
     },
 
     {
-      name: 'Shoes',
+      name: 'Fashion',
 
       imageUrl: 'https://reuplane.com/cdn/shop/products/e85c9ab82b678ffe77e8ad82fbb2b74c.webp?v=1693167537&width=713',
     },
@@ -315,7 +318,7 @@ style={styles.flatlist}
         {productdata ? (
 <FlatList
 style={styles.flatlist}
-  data={productdata}
+  data={slicedData}
   keyExtractor={(item) => item.id}
   numColumns={2}
   renderItem={({ item }) => (

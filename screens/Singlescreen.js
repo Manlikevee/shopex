@@ -88,7 +88,10 @@ export default function Singlescreen() {
     <View style={{ flex: 1, backgroundColor:'#FAFAFA' }}>
  
 {productdata ? 
+
   <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={{ paddingBottom: 90 }}>
+  
+  
   <View style={styles.photos}>
     {/* <Swiper
       renderPagination={(index, total) => (
@@ -114,6 +117,11 @@ export default function Singlescreen() {
     
     
     </Text>
+    <View style={{flexDirection:'row', gap:10, alignItems:'flex-end'}}>
+    <Text  style={styles.gridTextday}>Category:</Text> 
+    <Text style={{color:'#033BAB',    fontSize: 13, 
+    fontFamily: 'poppins'}}  >{productdata?.category?.name}</Text> 
+    </View>
 
     <View style={styles.headerRow}>
       <View style={styles.headerLocation}>
@@ -145,15 +153,45 @@ export default function Singlescreen() {
       <Text style={styles.headerDistance}>4.6 miles</Text>
     </View>
   </View>
+
+  <View style={styles.about}>
+    
+    <Text style={styles.aboutTitle}>About</Text>
+
+    <Text style={styles.aboutDescription}>
+    {productdata?.description}
+
+    
+
+    </Text>
+
+    <View style={styles.banner}>
+        <Image
+         source={require('../assets/booz.jpg')}
+         style={{ 
+          marginTop:20,
+            width:'100%',
+            padding:5,
+          height:100,
+            resizeMode: 'cover',}}
+      >
+
+        </Image>
+        </View>
+  </View>
+
+
+  <View style={{backgroundColor:'#fff',    
+    margin: 20,}}>
   <View style={styles.picker}>
     <TouchableOpacity
       onPress={() => {
         // handle onPress
       }}
       style={styles.pickerDates}>
-      <FeatherIcon color="#242329" name="calendar" size={16} />
+      <FeatherIcon color="#033BAB" name="calendar" size={16} />
 
-      <Text style={styles.pickerDatesText}>11 Mar - 12 Mar</Text>
+      <Text style={styles.pickerDatesText}>Warranty</Text>
     </TouchableOpacity>
 
     <View style={styles.pickerFilterWrapper}>
@@ -164,26 +202,80 @@ export default function Singlescreen() {
         style={styles.pickerFilter}>
         <View style={styles.pickerFilterItem}>
       
-          <FontAwesome color="#242329" name="car" size={15} />
+          <FontAwesome color="#033BAB" name="car" size={15} />
+
+          <Text style={styles.pickerFilterItemText}>365 Days</Text>
+        </View>
+
+
+      </TouchableOpacity>
+      
+    </View>
+  </View>
+  <View style={styles.picker}>
+    <TouchableOpacity
+      onPress={() => {
+        // handle onPress
+      }}
+      style={styles.pickerDates}>
+      <FeatherIcon color="#033BAB" name="calendar" size={16} />
+
+      <Text style={styles.pickerDatesText}>Return Policy</Text>
+    </TouchableOpacity>
+
+    <View style={styles.pickerFilterWrapper}>
+      <TouchableOpacity
+        onPress={() => {
+          // handle onPress
+        }}
+        style={styles.pickerFilter}>
+        <View style={styles.pickerFilterItem}>
+      
+          <FontAwesome color="#033BAB" name="car" size={15} />
+
+          <Text style={styles.pickerFilterItemText}>1-9 Days</Text>
+        </View>
+
+
+      </TouchableOpacity>
+      
+    </View>
+  </View>
+  <View style={styles.picker}>
+    <TouchableOpacity
+      onPress={() => {
+        // handle onPress
+      }}
+      style={styles.pickerDates}>
+      <FeatherIcon color="#033BAB" name="calendar" size={16} />
+
+      <Text style={styles.pickerDatesText}>Door Delivery
+      <Text></Text>
+      </Text>
+    </TouchableOpacity>
+
+    <View style={styles.pickerFilterWrapper}>
+      <TouchableOpacity
+        onPress={() => {
+          // handle onPress
+        }}
+        style={styles.pickerFilter}>
+        <View style={styles.pickerFilterItem}>
+      
+          <FontAwesome color="#033BAB" name="car" size={15} />
 
           <Text style={styles.pickerFilterItemText}>4-5 Days</Text>
         </View>
 
 
       </TouchableOpacity>
+      
     </View>
   </View>
-
-  <View style={styles.about}>
-    <Text style={styles.aboutTitle}>About</Text>
-
-    <Text style={styles.aboutDescription}>
-    {productdata?.description}
-
-    
-
-    </Text>
   </View>
+
+
+
   <View style={styles.about}>
   <Text style={styles.alsotext}>
 You May Also Like

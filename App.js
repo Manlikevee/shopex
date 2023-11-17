@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import StackNavigator from './StackNavigator';
 import { useFonts } from 'expo-font';
+import {Shopexcontext} from './styles/Shopexcontext';
+import Toast from 'react-native-toast-message';
 export default function App() {
   const [fontsLoaded] = useFonts({
     SoraBold: require('./assets/Sora-Bold.ttf'),
@@ -16,9 +18,10 @@ export default function App() {
     return null; // Or display a loading indicator
   }
   return (
-  
+  <Shopexcontext>
 <StackNavigator/>
-
+<Toast />
+</Shopexcontext>
   );
 }
 

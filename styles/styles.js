@@ -20,6 +20,15 @@ export const styles = StyleSheet.create({
         backgroundColor:'#FAFAFA',
        
     },
+    mttwo:{
+      marginTop:0,
+      flexDirection: 'column',
+      gap: 20,
+
+      paddingTop:0,
+      backgroundColor:'#FAFAFA',
+     
+  },
 
     mts:{
       flexDirection: 'column',
@@ -35,6 +44,14 @@ alignItems:'center'
         marginTop: 20,
 
     },
+    profilehead:{
+      backgroundColor:'#0C1A30',
+      padding: 10,
+      flexDirection: 'column',
+      gap: 4,
+      alignItems:'center'
+    }
+    ,
     myinput:{
         borderWidth: 1,
         borderColor: '#ddd',
@@ -118,6 +135,55 @@ alignItems:'center'
     color: '#827d7d',
     fontFamily: 'poppins'
   },
+  toptitle:{
+    marginTop: 10,
+    fontSize: 13, 
+    color: '#fff',
+    fontFamily: 'poppins'
+  },
+  shopexprofileflex:{
+    padding:10,
+    gap: 10,
+    flexDirection: 'column',
+    backgroundColor: '#fff',
+
+  },
+  gpt:{
+gap: 10,
+flexDirection:'row',
+alignItems:'center'
+  },
+  jcs:{
+    padding:7,
+    alignItems:'center',
+    justifyContent: 'space-between',
+    flexDirection:'row',
+    marginBottom: 6
+  },
+  profilephoto:{
+    width: 100,
+    height:  100,
+backgroundColor:'#f2f2f2',
+borderRadius:50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    textAlign: 'center',
+    marginTop:20,
+   
+  },
+  bottomtitle:{
+    fontSize: 12, 
+    color: '#f8991e',
+    fontFamily: 'poppins',
+
+  },
+
+  tac:{
+textAlign:'center',
+color: '#033BAB',
+
+
+  },
   productTitles: {
     fontSize: 13,
     color: '#0C1A30',
@@ -175,7 +241,7 @@ alignItems:'center'
     paddingHorizontal: 20,
     marginTop: 12,
     position: 'relative',
-    height: 240,
+    height: 270,
     overflow: 'hidden',
     borderRadius: 12,
   },
@@ -184,7 +250,7 @@ alignItems:'center'
     flexShrink: 1,
     flexBasis: 0,
     width: '100%',
-    height: 240,
+    height: 270,
 
     objectFit: 'contain'
   },
@@ -208,11 +274,16 @@ alignItems:'center'
   },
   header: {
     paddingVertical: 12,
-    paddingHorizontal: 20,
+    paddingHorizontal: 15,
+    backgroundColor: 'white',
+    borderColor: '#fff',
+    margin:20,
+    borderWidth: 1,
+    
   },
   headerTitle: {
     fontWeight: '400',
-    fontSize: 17,
+    fontSize: 16,
     lineHeight: 24,
     color: '#242329',
     fontFamily: 'poppins',
@@ -237,8 +308,8 @@ alignItems:'center'
   },
   headerPrice: {
     fontWeight: '700',
-    fontSize: 20,
-    lineHeight: 32,
+    fontSize: 18,
+    lineHeight: 30,
     textAlign: 'right',
     color: '#033BAB',
   },
@@ -260,9 +331,9 @@ alignItems:'center'
     color: '#7b7c7e',
   },
   picker: {
-    marginTop: 6,
-    marginHorizontal: 20,
-    paddingVertical: 8,
+    marginTop: 9,
+    marginHorizontal: 5,
+
     paddingHorizontal: 20,
     height: 48,
     backgroundColor: '#ffffff',
@@ -280,14 +351,16 @@ alignItems:'center'
   },
   pickerDatesText: {
     marginLeft: 8,
-    fontWeight: '700',
+    fontWeight: '500',
     fontSize: 14,
-    lineHeight: 18,
+    lineHeight: 23,
     color: '#242329',
+    fontFamily: 'poppins'
   },
   pickerFilter: {
     flexDirection: 'row',
     alignItems: 'center',
+    fontFamily: 'poppins'
   },
   pickerFilterWrapper: {
     borderLeftWidth: 1,
@@ -307,6 +380,7 @@ alignItems:'center'
     textAlign: 'center',
     color: '#242329',
     marginLeft: 4,
+    fontFamily: 'poppins'
   },
   stats: {
     marginVertical: 16,
@@ -327,8 +401,9 @@ alignItems:'center'
     marginLeft: 7,
   },
   about: {
-    paddingTop: 10,
+    padding: 5,
     marginHorizontal: 20,
+    backgroundColor:'#fff'
   },
   aboutTitle: {
     fontWeight: '700',
@@ -340,8 +415,11 @@ alignItems:'center'
   aboutDescription: {
     fontWeight: '500',
     fontSize: 13,
-    lineHeight: 20,
+    lineHeight: 24,
     color: '#7b7c7e',
+    fontFamily: 'poppins'
+
+
   },
   footer: {
     flexGrow: 1,

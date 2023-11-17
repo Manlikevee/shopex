@@ -8,20 +8,20 @@ const Cart = () => {
     <View style={styles.actions}>
     <SafeAreaView>
       <View style={styles.actionWrapper}>
-      <TouchableOpacity
+      {/* <TouchableOpacity
               onPress={() => {
                 // handle onPress
               }}>
               <View style={styles.action}>
                 <FeatherIcon color="#242329" name="heart" size={18} />
               </View>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
             <TouchableOpacity
               onPress={() => {
                 // handle onPress
               }}>
               <View style={styles.action}>
-                <FeatherIcon color="#242329" name="share" size={18} />
+                <FeatherIcon color="#242329" name="shopping-cart" size={18} />
               </View>
             </TouchableOpacity>
 

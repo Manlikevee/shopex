@@ -9,13 +9,14 @@ import * as Animatable from 'react-native-animatable';
 
 import Colors from '../components/Colors';
 import Category from './Category';
+import Profile from './Profile';
 const Singlepage = () => {
 
     const TabArr = [
         { route: 'Homepage', label: 'Home', type: Icons.Ionicons, activeIcon: 'home', inActiveIcon: 'home-outline', component: Homepage },
         { route: 'Category', label: 'Like', type: Icons.Ionicons, activeIcon: 'grid', inActiveIcon: 'grid-outline', component: Category },
         { route: 'LoginScreen', label: 'Search', type: Icons.Ionicons, activeIcon: 'bookmark', inActiveIcon: 'bookmark-outline', component: LoginScreen },
-        { route: 'LoginScreens', label: 'Searchs', type:  Icons.MaterialCommunityIcons, activeIcon: 'account-circle', inActiveIcon: 'account-circle-outline', component: LoginScreen },
+        { route: 'LoginScreens', label: 'Searchs', type:  Icons.MaterialCommunityIcons, activeIcon: 'account-circle', inActiveIcon: 'account-circle-outline', component: Profile },
       ];
 
 

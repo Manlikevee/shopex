@@ -1,15 +1,23 @@
 import { StyleSheet, Text, RefreshControl, View, ScrollView, Image, TextInput, FlatList, TouchableOpacity , ActivityIndicator} from 'react-native'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import { styles } from '../styles/styles'
 import {useNavigation} from '@react-navigation/native'
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import axios from 'axios';
 import accounting from 'accounting';
+import {UserData} from '../styles/Shopexcontext';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Homepage = () => {
   const navigation = useNavigation();
-  const [productdata, setProductData] = useState(null);
   const [refreshing, setRefreshing] = useState(false);
-  const [slicedData, setslicedData] = useState(false);
+  const { userId } = useContext(UserData);
+  const { fetchdata } = useContext(UserData);
+  const { productdata } = useContext(UserData);
+  const { slicedData } = useContext(UserData);
+  const { grocery } = useContext(UserData);
+  
+  
+
+
   const sampleData = [
 
   
@@ -186,22 +194,27 @@ const Homepage = () => {
     // Add more products as needed
   ];
 
-const fetchdata = async () => {
-  axios
-  .get('https://vee-commerce.cyclic.app/product')
-  .then((response) => {
-    // Handle the successful response and store the data in the state
-    setProductData(response.data);
-    const numberOfItemsToDisplay = 10;
-     setslicedData(response.data.slice(0, numberOfItemsToDisplay));
-    console.log('fetched')
+// const fetchdata = async () => {
+//   axios
+//   .get('https://vee-commerce.cyclic.app/product')
+//   .then((response) => {
+//     // Handle the successful response and store the data in the state
+//     setProductData(response.data);
+//     const numberOfItemsToDisplay = 12;
+//      setslicedData(response.data.slice(0, numberOfItemsToDisplay));
+//      const filteredData7 = response?.data?.filter(item => item.categoryId === 5);
+//      const slicedFilteredData7 = filteredData7.slice(0, numberOfItemsToDisplay);
+//      setgrocery(slicedFilteredData7)
+    
+//      console.log('fetched')
 
-  })
-  .catch((error) => {
-    // Handle any errors here
-    console.error('Error:', error);
-  });
-}
+
+//   })
+//   .catch((error) => {
+//     // Handle any errors here
+//     console.error('Error:', error);
+//   });
+// }
 
   useEffect(() => {
     // Make a GET request to the endpoint
@@ -302,13 +315,12 @@ style={styles.flatlist}
 
 <View style={styles.banner}>
         <Image
-         source={require('../assets/bernard.png')}
+         source={require('../assets/candor.jpg')}
          style={{ 
-          marginTop: 20,
-            width:'98%',
-
+          marginTop:20,
+            width:'100%',
             padding:5,
-            borderRadius: 5,
+          height:100,
             resizeMode: 'cover',}}
       >
 
@@ -328,7 +340,7 @@ style={styles.flatlist}
       <Text style={styles.gridTextday}>{(accounting.formatMoney(item?.price, '₦ ', 2))}</Text>
 
       <TouchableOpacity style={styles.cartbtn} onPress={() => navigation.navigate('singlescreen', { paramName: item.id })}>
-         <Text style={styles.carttxt}>Add To Cart</Text>
+         <Text style={styles.carttxt}>Add To Cart </Text>
       </TouchableOpacity>
     </View>
   )}
@@ -344,7 +356,48 @@ color='#033BAB'/>
         }
 
 
+<View style={styles.banner}>
+        <Image
+         source={require('../assets/gtoc.jpg')}
+         style={{ 
+          marginTop:20,
+            width:'100%',
+            padding:5,
+          height:100,
+            resizeMode: 'cover',}}
+      >
 
+        </Image>
+        </View>
+
+
+        {productdata ? (
+<FlatList
+style={styles.flatlist}
+  data={grocery}
+  keyExtractor={(item) => item.id}
+  numColumns={2}
+  renderItem={({ item }) => (
+    <View style={styles.gridItem}>
+      <Image source={{ uri: item.image}} style={styles.productImage} />
+      <Text numberOfLines={1} style={styles.productTitle}>{item.name}</Text>
+      <Text style={styles.gridTextday}>{(accounting.formatMoney(item?.price, '₦ ', 2))}</Text>
+
+      <TouchableOpacity style={styles.cartbtn} onPress={() => navigation.navigate('singlescreen', { paramName: item.id })}>
+         <Text style={styles.carttxt}>Add To Cart </Text>
+      </TouchableOpacity>
+    </View>
+  )}
+/>
+        )
+        : 
+        <View style={{marginTop: 10, marginBottom: 30}}>
+        <ActivityIndicator
+size='large'
+color='#033BAB'/>
+
+  </View>
+        }
 
 <View style={{marginBottom:130}}>
 

@@ -1,8 +1,29 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, Pressable } from 'react-native'
-import React from 'react'
+import React, { useState, useEffect } from 'react';
 import {useNavigation} from '@react-navigation/native'
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 const LoginScreen = () => {
   const navigation = useNavigation();
+
+useEffect(() => {
+const checkLoginStatus = async() => {
+
+  try {
+    const token = await AsyncStorage.getItem('my-access-key');
+
+    if (token){
+      navigation.replace('Tabs');
+    }
+    else {
+  
+    }
+  } catch (error) {
+    console.log(error)
+  }
+
+}; checkLoginStatus();
+}, [])
   return (
     <View style={styles.container}>
         <View style={styles.top}>
@@ -28,7 +49,7 @@ const LoginScreen = () => {
 <Text style={styles.lightbluebtntext}>Sign In As Guests</Text>
 </TouchableOpacity>
       </View>
-<Pressable onPress={() => navigation.navigate('welcome')}>
+<Pressable onPress={() => navigation.navigate('Signin')}>
       <Text style={styles.alreadyhave} > Already Have An Account? <Text style={styles.boldblue}>Sign in</Text>  </Text>
       </Pressable>
           </View>

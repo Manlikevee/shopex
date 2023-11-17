@@ -7,7 +7,7 @@
     "icon": "./assets/grp.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/grp.png",
+      "image": "./assets/gonp.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

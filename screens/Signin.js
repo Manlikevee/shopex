@@ -1,89 +1,53 @@
 import { StyleSheet, Text, View, Image, TouchableOpacity, TextInput, ActivityIndicator } from 'react-native'
+import {useNavigation} from '@react-navigation/native';
 import React, { useState } from 'react';
-import {useNavigation} from '@react-navigation/native'
-import { useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import Toast from 'react-native-toast-message';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-const Welcomeback = () => {
-  const route = useRoute();
-  const [error, setError] = useState(null);
-  const [userData, setUserData] = useState(null);
-  const [password, setPassword] = useState('');
-  const [loadingbar, Setloadingbar] = useState(false)
-  const id = route?.params?.email
-  const username = route?.params?.username
-  const navigation = useNavigation();
+const Signin = () => {
+const navigation = useNavigation();
+const [error, setError] = useState(null);
+const [userData, setUserData] = useState(null);
+const [email, setEmail] = useState('');
+const [loadingbar, Setloadingbar] = useState(false)
 
-  const handleProceed = async () => {
-    if (!password.trim()) {
+
+const handleProceed = async () => {
+
+    if (!email.trim()) {
+   
       Toast.show({
+        
+
         type: 'error',
-        text1: 'Password cannot be empty',
+        text1: 'Email cannot be empty'
       });
-      console.log('error');
+
       return;
     }
 
     try {
-      Setloadingbar(true);
-
-
-      const requestBody = {
-        email: id,
-        password: password,
-      };
-
-      // Set a timeout of 20 seconds (20000 milliseconds)
-      const timeout = 25000;
-
-      // Use Promise.race to handle the first promise that resolves or rejects
-      const response = await Promise.race([
-        axios.post('https://vee-commerce.cyclic.app/user/signIn', requestBody),
-        new Promise((_, reject) =>
-          setTimeout(() => reject(new Error('Request timed out')), timeout)
-        ),
-      ]);
-
-      Setloadingbar(false);
-
-      // Assuming the response contains a token or user data
-      // You may need to adapt this based on the actual API response
-      const token = response.data;
-      console.log(token);
-      await AsyncStorage.setItem('my-access-key', response?.data?.accessToken);
-      await AsyncStorage.setItem('my-refresh-key', response.data.refreshToken);
-      navigation.replace('Tabs');
-
+        Setloadingbar(true)
+      const response = await axios.get(`https://vee-commerce.cyclic.app/user/${email}`);
+      setUserData(response.data);
+      setError(null); // Clear any previous errors
+      Setloadingbar(false)
+      navigation.replace('welcome', { email: email, username: response?.data?.username })
+  
     } catch (error) {
-      console.log(error.response?.data);
-      console.log(error?.message)
-      if (error.message === 'Request timed out') {
+      if (error.response && error.response.status === 404) {
+        Setloadingbar(false)
         Toast.show({
-          type: 'error',
-          text1: 'Request timed out. Please try again.',
-        });
-      } else if (error.response?.data) {
-        console.log('ff')
-        Toast.show({
-          type: 'error',
-          text1: error?.response?.data?.message,
-        });
-        Setloadingbar(false);
-      } 
-       else {
+            type: 'error',
+            text1: 'Email does not exist'
+          });
+ 
+      } else {
         setError('An error occurred while processing your request');
       }
-
-      Setloadingbar(false);
-      // Toast.show({
-      //   type: 'error',
-      //   text1: 'Request timed out. Please try again.',
-      // });
+      Setloadingbar(false)
       setUserData(null); // Clear user data in case of an error
     }
   };
-
 
   return (
     <View style={styles.container}>
@@ -110,19 +74,20 @@ const Welcomeback = () => {
           <Text style={styles.txtcentertwo}> Login To Continue </Text>
 
       <View style={styles.buttongroup}>
-      <Text>Welcome back, {username}</Text>
+      {/* <Text>Welcome Enter Your Email Address</Text> */}
      
      <View>
-     <Text style={styles.placeholder}>Enter Password</Text>
+     <Text style={styles.placeholder}>Email Address</Text>
       <TextInput style={styles.myinput}
-        placeholder={'••••••••••'}
-        secureTextEntry={true}
-        onChangeText={(text) => setPassword(text)}
-        autoCapitalize="none"
+        placeholder={'Enter Your Email'}
+        secureTextEntry={false}
+        onChangeText={(text) => setEmail(text)}
+            autoCapitalize="none"
       />
         
         </View> 
-     
+
+    
         {loadingbar ?  
      <TouchableOpacity
      style={styles.bluebtn} 
@@ -148,16 +113,19 @@ const Welcomeback = () => {
 
 
 
-<Text style={styles.bluebtntext}>Sign in</Text>
+<Text style={styles.bluebtntext}>Proceed</Text>
 
       </TouchableOpacity>
 
       }
 
+     
+
+
 
       </View>
 
-      <Text style={styles.alreadyhave} > Not {username}? <Text style={styles.boldblue}>Switch Account</Text>  </Text>
+      <Text style={styles.alreadyhave} > Dont Have An Account? <Text style={styles.boldblue}>Signup</Text>  </Text>
           </View>
   
       </View>
@@ -165,7 +133,7 @@ const Welcomeback = () => {
   )
 }
 
-export default Welcomeback
+export default Signin
 
 const styles = StyleSheet.create({
     container: {
@@ -197,7 +165,7 @@ borderWidth: 1,
 borderColor: '#ddd',
 padding: 7,
 borderRadius: 4,
-fontSize: 18,
+fontSize: 15,
       },
       boldblue:{
         color:'#0369AB',
